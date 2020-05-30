@@ -17,5 +17,5 @@
 # limitations under the License.
 ################################################################################
 
-FLINK_DIR=/Users/wuchong/dev/install/flink-1.9.0
-KAFKA_DIR=/Users/wuchong/dev/install/kafka_2.11-2.2.0
+FLINK_DIR=/Users/huangxf/code/flink/flink-dist/target/flink-1.9-SNAPSHOT-bin/flink-1.9-SNAPSHOT
+KAFKA_DIR=/Users/huangxf/dev/install/kafka_2.11-2.2.0

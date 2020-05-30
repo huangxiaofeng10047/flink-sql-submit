@@ -28,6 +28,17 @@ public class SourceGenerator {
     private static final long SPEED = 1000; // 每秒1000条
 
     public static void main(String[] args) {
+        String json="{"
+            + "\"eventType\": \"clickBuyNow\",\n"
+            + "    \"userId\": \"97470180\",\n"
+            + "    \"shareUserId\": \"\",\n"
+            + "    \"platform\": \"xyz\",\n"
+            + "    \"columnType\": \"merchDetail\",\n"
+            + "    \"merchandiseId\": \"12727495\",\n"
+            + "    \"fromType\": \"wxapp\",\n"
+            + "    \"siteId\": \"20392\",\n"
+            + "    \"categoryId\": \"\",\n"
+            + "    \"ts\": 1585136092541}";
         long speed = SPEED;
         if (args.length > 0) {
             speed = Long.valueOf(args[0]);

@@ -22,3 +22,7 @@ You can follow my WeChat Subscription Account for more information about this pr
 
 <img src="https://img.alicdn.com/tfs/TB1.ajIlIbpK1RjSZFyXXX_qFXa-1004-541.png" width="500px" />
 
+学习 添加
+sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+更改完 /etc/apk/repositories 文件后请运行 apk update 更新索引以生效。
+

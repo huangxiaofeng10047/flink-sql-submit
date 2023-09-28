@@ -7,8 +7,8 @@
 
 JAR = target/flink-sql-submit-*.jar
 
-FLINK_VERSION  = 1.15.3
-HADOOP_VERSION = 2.10.2
+FLINK_VERSION  = 1.15.4
+HADOOP_VERSION = 3.3.4
 SCALA_VERSION  = 2.12
 JOB            = com.github.wuchong.sqlsubmit.SqlSubmit
 ARGS           = ''

@@ -82,13 +82,13 @@
 #  sed -i '/taskmanager.host: localhost/d' $FLINK_HOME/conf/flink-conf.yaml
 ## 把这个脚本拷贝到镜像
 #COPY docker/flink/docker-entrypoint.sh /
-FROM flink:1.15.4
+FROM flink:1.17.1-SN2
 COPY juicefs-hadoop-1.1-dev.jar /opt/flink/lib/
-COPY  flink-s3-fs-hadoop-1.15.4.jar /opt/flink/lib/
-COPY  target/flink-sql-submit-1.0.jar /opt/flink/lib/
+COPY  flink-s3-fs-hadoop-1.17.1.jar /opt/flink/lib/
+COPY  target/flink-sql-submit-1.1.jar /opt/flink/lib/
 #install hadoop
 RUN set -ex; \
-    wget -nv -O /opt/flink/lib/hudi-flink.jar https://nexus.lrting.top/repository/maven-deploy/org/apache/hudi/hudi-flink1.15-bundle/0.12.0/hudi-flink1.15-bundle-0.12.0.jar ; \
+    wget -nv -O /opt/flink/lib/hudi-flink.jar http://10.7.20.12:60000/hudi-flink1.17-bundle-1.0.0-SNAPSHOT1.jar ; \
      wget -nv -O /opt/hadoop.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz ; \
         tar -xzf /opt/hadoop.tar.gz -C /opt/ ; \
         rm -rf /opt/hadoop.tar.gz ; \

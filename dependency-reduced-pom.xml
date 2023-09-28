@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.wuchong</groupId>
   <artifactId>flink-sql-submit</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.1</version>
   <build>
     <plugins>
       <plugin>
@@ -44,8 +44,8 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>8</source>
-          <target>8</target>
+          <source>17</source>
+          <target>17</target>
         </configuration>
       </plugin>
     </plugins>
@@ -128,7 +128,7 @@
     <dependency>
       <groupId>org.apache.flink</groupId>
       <artifactId>flink-sql-client</artifactId>
-      <version>1.15.0</version>
+      <version>1.17.1</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -140,11 +140,11 @@
           <groupId>org.apache.flink</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>flink-shaded-jackson</artifactId>
+          <artifactId>flink-sql-gateway-api</artifactId>
           <groupId>org.apache.flink</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>flink-shaded-force-shading</artifactId>
+          <artifactId>flink-shaded-jackson</artifactId>
           <groupId>org.apache.flink</groupId>
         </exclusion>
         <exclusion>
@@ -170,7 +170,7 @@
     <hive.version>1.1.0</hive.version>
     <jcommander.version>1.30</jcommander.version>
     <junit.version>5.7.2</junit.version>
-    <flink.version>1.15.0</flink.version>
+    <flink.version>1.17.1</flink.version>
     <hadoop.version>3.2.0</hadoop.version>
   </properties>
 </project>

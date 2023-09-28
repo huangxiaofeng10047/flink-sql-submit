@@ -6,12 +6,12 @@
 
     <groupId>com.github.wuchong</groupId>
     <artifactId>flink-sql-submit</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1</version>
 
     <properties>
 <!--        <flink.version>1.9.0</flink.version>-->
         <scala.bin.version>2.12</scala.bin.version>
-        <flink.version>1.15.0</flink.version>
+        <flink.version>1.17.1</flink.version>
         <hive.version>1.1.0</hive.version>
         <minio.version>8.4.3</minio.version>
         <hadoop.version>3.2.0</hadoop.version>
@@ -154,8 +154,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
 

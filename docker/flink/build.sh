@@ -149,18 +149,18 @@ if [ -n "${FROM_RELEASE}" ]; then
         SHADED_HADOOP="${CURL_OUTPUT_SHADED_HADOOP}"
     fi
     FLINK_DIST_FILE_NAME="flink-${FLINK_VERSION}-bin-scala_${SCALA_VERSION}.tgz"
-  elif [[ -z "${HADOOP_VERSION}" ]]; then
-    usage
-  else
-    FLINK_DIST_FILE_NAME="flink-${FLINK_VERSION}-bin-hadoop${HADOOP_MAJOR_VERSION}-scala_${SCALA_VERSION}.tgz"
+  # elif [[ -z "${HADOOP_VERSION}" ]]; then
+  #   usage
+  # else
+  #   FLINK_DIST_FILE_NAME="flink-${FLINK_VERSION}-bin-hadoop${HADOOP_MAJOR_VERSION}-scala_${SCALA_VERSION}.tgz"
   fi
 
-
+  FLINK_DIST_FILE_NAME="flink-${FLINK_VERSION}-bin-scala_${SCALA_VERSION}.tgz"
   CURL_OUTPUT="${TMPDIR}/${FLINK_DIST_FILE_NAME}"
-
-  DOWNLOAD_FLINK_URL=${FLINK_BASE_URL}${FLINK_DIST_FILE_NAME}
+  echo "${CURL_OUTPUT}"
+  DOWNLOAD_FLINK_URL="https://dlcdn.apache.org/flink/flink-1.15.3/"${FLINK_DIST_FILE_NAME}
   checkUrlAvailable ${DOWNLOAD_FLINK_URL}
-
+   echo "${FLINK_DIST_FILE_NAME}" 
   echo "Downloading ${FLINK_DIST_FILE_NAME} from ${DOWNLOAD_FLINK_URL}"
 
   curl -# ${DOWNLOAD_FLINK_URL} --output ${CURL_OUTPUT}
@@ -193,4 +193,4 @@ else
     DOCKERFILE="Dockerfile"
 fi
 
-docker build --build-arg flink_dist="${FLINK_DIST}" --build-arg job_artifacts="${JOB_ARTIFACTS_TARGET}" --build-arg hadoop_jar="${SHADED_HADOOP}" --build-arg python_version="${PYTHON_VERSION}" -t "${IMAGE_NAME}" -f $DOCKERFILE .
+docker build --build-arg flink_version="${FLINK_VERSION}" --build-arg flink_dist="${FLINK_DIST}" --build-arg job_artifacts="${JOB_ARTIFACTS_TARGET}" --build-arg hadoop_jar="${SHADED_HADOOP}" --build-arg python_version="${PYTHON_VERSION}" -t "${IMAGE_NAME}" -f $DOCKERFILE .

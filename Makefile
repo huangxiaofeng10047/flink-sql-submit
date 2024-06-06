@@ -8,7 +8,7 @@
 JAR = target/flink-sql-submit-*.jar
 
 FLINK_VERSION  = 1.15.3
-HADOOP_VERSION = 2.10.2
+HADOOP_VERSION = 3.2.4
 SCALA_VERSION  = 2.12
 JOB            = com.github.wuchong.sqlsubmit.SqlSubmit
 ARGS           = ''
@@ -29,13 +29,14 @@ jar:
 image:
 	./docker/flink/build.sh --job-artifacts $(JAR) \
 		--from-archive ~/Downloads/flink-$(FLINK_VERSION)-bin-scala_$(SCALA_VERSION).tgz \
-		--image-name sqlsubmit-job:latest
+		--image-name sqlsubmit-job:latest \
+		--flink-version $(FLINK_VERSION) 
 
 image-from-release:
 	./docker/flink/build.sh --job-artifacts $(JAR) \
 		--from-release \
+		--hadoop-version ${HADOOP_VERSION} \
 		--flink-version $(FLINK_VERSION) \
-		--hadoop-version $(HADOOP_VERSION) \
 		--scala-version $(SCALA_VERSION) \
 		--image-name streaming-job:latest
 

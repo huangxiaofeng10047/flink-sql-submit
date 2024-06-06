@@ -4,7 +4,7 @@ services:
   ### Flink Cluster ###
 
   job-cluster:
-    image: sqlsubmit-job
+    image: streaming-job
     hostname: job-cluster
     ports:
       - "8081:8081"
@@ -12,7 +12,7 @@ services:
     # --job-classname ${FLINK_JOB} -Djobmanager.rpc.address=job-cluster ${FLINK_JOB_ARGUMENTS}
 
   taskmanager:
-    image: sqlsubmit-job
+    image: streaming-job
     hostname: taskmanager
     command: taskmanager -Djobmanager.rpc.address=job-cluster
 

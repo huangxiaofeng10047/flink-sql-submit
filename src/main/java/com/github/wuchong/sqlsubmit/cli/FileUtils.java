@@ -26,11 +26,12 @@ public class FileUtils {
         List<String> lines = new ArrayList<>();
         try {
             File file = new File(filePath);
-            InputStreamReader input = new InputStreamReader(Files.newInputStream(file.toPath(), new java.nio.file.OpenOption[0]));
+            InputStreamReader input = new InputStreamReader(Files.newInputStream(file.toPath()));
             BufferedReader bf = new BufferedReader(input);
             String str;
-            while ((str = bf.readLine()) != null)
+            while ((str = bf.readLine()) != null) {
                 lines.add(str);
+            }
             bf.close();
             input.close();
         } catch (IOException e) {
@@ -43,11 +44,12 @@ public class FileUtils {
         try {
             File jsonFile = new File(filePath);
             FileReader fileReader = new FileReader(jsonFile);
-            Reader reader = new InputStreamReader(Files.newInputStream(jsonFile.toPath(), new java.nio.file.OpenOption[0]), StandardCharsets.UTF_8);
+            Reader reader = new InputStreamReader(Files.newInputStream(jsonFile.toPath()), StandardCharsets.UTF_8);
             StringBuilder sb = new StringBuilder();
             int ch;
-            while ((ch = fileReader.read()) != -1)
+            while ((ch = fileReader.read()) != -1) {
                 sb.append((char)ch);
+            }
             fileReader.close();
             reader.close();
             return sb.toString();
@@ -68,8 +70,9 @@ public class FileUtils {
             InputStreamReader inputStreamReader = new InputStreamReader((InputStream)getObjectResponse, StandardCharsets.UTF_8);
             BufferedReader bf = new BufferedReader(inputStreamReader);
             String str;
-            while ((str = bf.readLine()) != null)
+            while ((str = bf.readLine()) != null) {
                 lines.add(str);
+            }
             getObjectResponse.close();
             inputStreamReader.close();
             return StringUtils.join(lines, "\n");

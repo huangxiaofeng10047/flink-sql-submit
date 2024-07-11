@@ -82,18 +82,24 @@
 #  sed -i '/taskmanager.host: localhost/d' $FLINK_HOME/conf/flink-conf.yaml
 ## 把这个脚本拷贝到镜像
 #COPY docker/flink/docker-entrypoint.sh /
-FROM flink:1.17.1-SN2
-COPY juicefs-hadoop-1.1-dev.jar /opt/flink/lib/
-COPY  flink-s3-fs-hadoop-1.17.1.jar /opt/flink/lib/
-COPY  target/flink-sql-submit-1.1.jar /opt/flink/lib/
+FROM flink:1.17.2-SN
+COPY  juicefs-hadoop-1.1-dev.jar  /opt/flink/lib/
+#COPY  flink-s3-fs-hadoop-1.17.2.jar /opt/flink/lib/
+COPY  target/flink-sql-submit-1.0-SNAPSHOT.jar /opt/flink/lib/
 #install hadoop
 RUN set -ex; \
-    wget -nv -O /opt/flink/lib/hudi-flink.jar http://10.7.20.12:60000/hudi-flink1.17-bundle-1.0.0-SNAPSHOT1.jar ; \
-     wget -nv -O /opt/hadoop.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz ; \
+    wget -nv -O /opt/flink/lib/hudi-flink.jar https://repo1.maven.org/maven2/org/apache/hudi/hudi-flink1.17-bundle/1.0.0-beta1/hudi-flink1.17-bundle-1.0.0-beta1.jar ; \
+     wget -nv -O /opt/hadoop.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.3.5/hadoop-3.3.5.tar.gz ; \
         tar -xzf /opt/hadoop.tar.gz -C /opt/ ; \
         rm -rf /opt/hadoop.tar.gz ; \
-           mv /opt/hadoop-3.3.4 /opt/hadoop ; \
-     cp /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-core-3.3.4.jar /opt/flink/lib/
+           mv /opt/hadoop-3.3.5 /opt/hadoop ; \
+     cp /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-core-3.3.5.jar /opt/flink/lib/
+RUN mkdir -p /opt/flink/plugins/flink-s3-fs-hadoop/ &&\
+    mv -v /opt/flink/opt/flink-s3-fs-hadoop-*.jar /opt/flink/plugins/flink-s3-fs-hadoop/ &&\
+    chown -R flink:flink /opt/flink/plugins/flink-s3-fs-hadoop
+COPY juicefs-hadoop-1.1-dev.jar /opt/hadoop/share/hadoop/common/lib/
+COPY juicefs-hadoop-1.1-dev.jar /opt/hadoop/share/hadoop/mapreduce/lib/
 
 
 ENV HADOOP_HOME=/opt/hadoop
+ENV HADOOP_CLASSPATH=/opt/hadoop/etc/hadoop:/opt/hadoop/share/hadoop/common/lib/*:/opt/hadoop/share/hadoop/common/*:/opt/hadoop/share/hadoop/hdfs:/opt/hadoop/share/hadoop/hdfs/lib/*:/opt/hadoop/share/hadoop/hdfs/*:/opt/hadoop/share/hadoop/mapreduce/*:/opt/hadoop/share/hadoop/yarn:/opt/hadoop/share/hadoop/yarn/lib/*:/opt/hadoop/share/hadoop/yarn/*

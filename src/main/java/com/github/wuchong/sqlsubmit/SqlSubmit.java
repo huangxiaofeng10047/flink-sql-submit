@@ -25,6 +25,7 @@ public class SqlSubmit {
     }
     
     public static void main(String[] args) throws Exception {
+
         EnvironmentSettings settings;
         SqlSubmitConfig sqlSubmitConfig = SqlSubmitConfig.getConfig(args);
         if (sqlSubmitConfig.sqlFilePath.toUpperCase().startsWith("S3")) {
